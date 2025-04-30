@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            font-family: Arial, sans-serif;
+        }
+        .welcome {
+            position: absolute;
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            width: 100vw;
+            height: 100vh;
+            background: url('sik.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: brightness(0.7);
+        }
+         .HEART {
+            position: absolute;
+            bottom: 10px;
+            font-size: 200px;
+            cursor: pointer;
+        }
+        .slideshow {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slide img {
+            width: 10vw;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome">
+        <h1></h1>
+        <p></p>
+        <div class="HEART" onclick="startSlideshow()">❤️</div>
+    </div>
+    
+    <div class="slideshow">
+        <div class="slide" style="background-image: url('rose.jpg');"> <h1>Happy Rose Day! 🌹</h1> </div>
+        <div class="slide" style="background-image: url('teddy.jpg');"> <h1> 🧸</h1> </div>
+        <div class="slide" style="background-image: url('choclate.jpg');"> <h1> 🍫</h1> </div>
+        <div class="slide" style="background-image: url('valentine.jpg');"> <h1>! 💖</h1> </div>
+    </div>
+
+    <audio id="bgMusic" src="n.mp3"></audio>
+    <img src="choclate.jpg" alt="" class="choclate">
+    
+    <script>
+        let slideIndex = 0;
+        let slides = document.querySelectorAll('.slide');
+        let slideshow = document.querySelector('.slideshow');
+        let welcomeScreen = document.querySelector('.welcome');
+        let music = document.getElementById('bgMusic');
+
+        function startSlideshow() {
+            welcomeScreen.style.display = 'none';
+            slideshow.style.display = 'block';
+            music.play();
+            showSlides();
+        }
+
+        function showSlides() {
+            if (slideIndex < slides.length) {
+                slides.forEach(slide => slide.style.display = 'none');
+                slides[slideIndex].style.display = 'block';
+                slideIndex++;
+                setTimeout(showSlides, 5000); // Change slide every 5 sec
+            }
+        }
+    </script>
+</body>
+</html>
